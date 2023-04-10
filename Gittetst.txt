@@ -1,2 +1,366 @@
-Version 3
-hello worlf
+https://adevait.com/javascript-developers/interview-questions
+https://www.toptal.com/javascript/interview-questions
+
+1. What is the difference between undefined and not defined in JavaScript?
+=> 	var b;
+	console.log(b); //undefimed
+	console.log("type of ", typeof(b));  //"type of ", "undefined"
+	console.log(c);  // c is not defined
+	console.log("type of ", typeof(c));  //"type of ", "undefined"
+
+======================================================================================== 
+	
+2. What is a "closure" in JavaScript?
+=> 	For every clousre we have 3 scope: 
+	1.Local Scope 
+	2.Outer Function Scope 
+	3.Global Scope
+	A closure is a function having access to the parent scope. It preserve the data from outside.
+	ex: -
+		var a="a is a global variable of outer function";
+		function outer(){
+			var b = "b is a local variable of outer function";
+		  console.log(b);
+			console.log(a);
+		}
+		outer();
+	A clousue is a inner function that has access to the outer function variable.
+	ex: - Nested Function	
+		function outer(){
+			var a="a is a local variable of outer function";
+		  console.log(a);
+			function inner(){
+			var b = "b is a local variable of inner function";
+			console.log(b);
+		  }
+		  inner();
+		}
+		outer();
+	
+	ex: - clousre function "when we access outer function variable in inner function"
+		function outer(){
+			var a="a is a local variable of outer function";
+		  console.log(a);
+			function inner(){
+			var b = "b is a local variable of inner function";
+			console.log(b);
+			console.log(a);
+		  }
+		  inner();
+		}
+		outer();
+		
+	ex: - inner function can access outer function vaiable but outer function can't access inner function variable.
+
+========================================================================================
+
+3.	What will be the output of the code below?
+	var trees = ["pine","apple","oak","maple","cherry"];
+	delete trees[3];
+	console.log(trees.length);
+=> 	Output would be 5 b/c delete operator to delete an array element it doesn't unset the element in that position of the array, but sets it to undefined.
+	console.log(trees)  //["pine", "apple", "oak", undefined, "cherry"]
+	
+	
+5. 	What is typeof
+	var a;  //"undefined"  
+	var b = 'Ashish';  //"string"
+	var c = "Ashish";  //"string"
+	var d = undefined;  //"undefined"
+	var e = 10;  //"number"
+	var f = 10.5;  //"number"
+	var g = null;  //"object"
+	var h = [];  //"object"
+	var i = {};  //"object"
+	
+	console.log("a ",typeof(a));
+	console.log("b ",typeof(b));
+	console.log("c ",typeof(c));
+	console.log("d ",typeof(d));
+	console.log("e ",typeof(e));
+	console.log("f ",typeof(f));
+	console.log("g ",typeof(g));
+	console.log("h ",typeof(h));
+	console.log("i ",typeof(i));
+	console.log(typeof(b) === typeof(c));  //true
+	console.log(typeof(i) === typeof(h));  //true
+	console.log(j);  //undefined
+	var j; or var j=10;
+	
+========================================================================================		
+
+4. 	What is the difference between == and ===?
+=> 	==  operator checks equality only, whereas === checks equality and data type i.e. the values must be of the same type.
+
+========================================================================================
+
+5.  What does the isNaN() function do?
+=>  isNan() funtion return true if the variable valur is not a number.
+	console.log(isNaN(a));  //true
+	console.log(isNaN(b));  //true
+	console.log(isNaN(e));  //false
+	console.log(isNaN(g));  //true
+	console.log(isNaN(h));  //true
+	
+========================================================================================
+
+6. 	What is the result of "10"+20+30 in JavaScript?
+=> 	console.log("10"+20+30);  //102030 b/c "10" is string and + with num 20 and 30 so it will concinate as string
+
+========================================================================================
+
+7.  How does Array() differ from [] while creating a JavaScript array?
+=> 	[] initially length always showing 0, new Array() when pass argument like 3 it swill create array of undefined value which having 3 length
+	var a = [];  // these are the same
+	var	b = new Array();  // a and b are arrays with length 0
+
+	var c = ['foo', 'bar'];  // these are the same
+	var d = new Array('foo', 'bar');  // c and d are arrays with 2 strings
+
+	// these are different:
+	var e = [3];  // e.length == 1, e[0] == 3
+	var f = new Array(3);  // f.length == 3, f[0] == undefined
+
+========================================================================================
+
+8. 	What is the difference between declaring a function in the two formats below?
+	var foo = function() {
+	/* Some code */
+	};
+	function bar() {
+	/* Some code */
+	};
+=>	foo("Args");  //Throwing Error
+	bar("Args");  //"foo Args"
+
+	/* Runtime Function Declaration*/
+	var foo = function(a) {
+		console.log("foo " + a )
+	};
+	/* Parse Function Declaration*/
+	function bar(a) {
+		console.log("bar " + a)
+	}
+
+	foo("Args");  //"foo Args"
+	bar("Args");  //"foo Args"
+
+========================================================================================
+
+9. What is JavaScript self-invoking anonymous function?
+=> 	A selcf invoking  anonymous function suns imidiately when we define it and dosen't have a name.
+	(function(){
+	console.log("Self invoking func");
+	})();
+	
+========================================================================================
+
+10.	What will the code below output?
+	var a = [1, 2, 3];
+	a[10] = 99;
+	console.log(a[6]);
+=>  //[1,2,3,undefined, undefined, undefined, undefined, undefined, undefined, undefined, 99]
+
+========================================================================================
+
+11.	What will be the output of the following code?
+	var Employee = {
+		company: 'Acme'
+	}
+	var employee1 = Object.create(Employee);
+	delete employee1.company
+	console.log(employee1.company);
+=>  The above code will output Acme. For the object employee1, company is a prototype property that can't be deleted using the delete operator.
+
+========================================================================================
+
+12.	What will be the output of the following code?
+	var z = 1, y = z = typeof y;
+	console.log(y);
+=>  output is undefined. b/c code read right to left;
+
+========================================================================================
+
+13. Consider the two functions below. Will they both return the same thing?
+	function foo1(){
+		return {
+			bar: "hello"
+		};
+	}
+	function foo2(){
+		return {
+			bar: "hello"
+		};
+	}
+=>	console.log(foo1(), foo2())  //{
+								  bar: "hello"
+								}, undefined
+
+========================================================================================
+
+14. How do you clone an object?
+=> 	To copy an object in JavaScript, you have three options:
+	let obj = {
+    a: 1,
+    b: 2,
+    c: {
+        age: 30
+		}
+	};
+	Use the spread (...) syntax  //Shallow Copy
+	var objclone = {
+		...obj
+	}
+	console.log('objclone: ', objclone);
+	obj.c.age = 45;
+	console.log('After Change - obj: ', obj);           // 45 - This also changes
+	console.log('After Change - objclone: ', objclone); // 45
+	
+	Use the Object.assign() method  //Shallow Copy
+	var objclone = Object.assign({},obj);
+	console.log('objclone: ', objclone);
+	obj.c.age = 45;
+	console.log('After Change - obj: ', obj);           // 45 
+	console.log('After Change - objclone: ', objclone); // 45  - This also changes
+	Note the potential pitfall, though: Object.assign() will just do a shallow copy, not a deep copy. This means that nested objects aren’t copied.
+	
+	Use the JSON.stringify() and JSON.parse() methods  //Deep Copy
+	var objclone = JSON.parse(JSON.stringify(obj));
+	console.log('objclone: ', objclone);
+	obj.c.age = 45;
+	console.log('After Change - obj: ', obj);           // 45 
+	console.log('After Change - objclone: ', objclone); // 30
+		
+========================================================================================
+
+15.	Discuss possible ways to write a function isInteger(x) that determines if x is an integer.
+=>	function isInteger1(x) { return (x ^ 0) === x; } 
+	function isInteger2(x) { return (typeof x === 'number') && (x % 1 === 0); }
+	function isInteger3(x) { return Math.round(x) === x; }
+	function isInteger(x) { return parseInt(x, 10) === x; }
+	
+========================================================================================
+
+16.	What will the following code output and why?
+	var b = 1;
+	function outer(){
+		var b = 2  //undefined
+		function inner(){
+			b++;  //// b is NaN
+			var b = 3;   // b is 3
+			console.log(b)  // output "3"
+		}
+		inner();
+	}
+	outer();
+=> 	3
+
+========================================================================================
+
+17. What would following code return?
+=> 	console.log(typeof typeof 1);  //string
+
+========================================================================================
+
+18.	What is the value of typeof undefined == typeof NULL?  //true b/c null != NULL
+
+========================================================================================
+
+19.	What will this output? 
+=> 	console.log(a[6]); //undefined
+	var a = [1, 2, 3];
+	a[10] = 99;
+	console.log(a[6]);  //undefined
+
+========================================================================================
+
+20.	How do you add an element at the begining of an array? How do you add one at the end?
+=> 	var myArray = ['a', 'b', 'c', 'd'];
+	myArray.push('end');
+	myArray.unshift('start');
+	console.log(myArray); // ["start", "a", "b", "c", "d", "end"]
+
+========================================================================================
+
+21. What do the following lines output, and why?
+=>	console.log(1 < 2 < 3);  //(true < 3) // true
+	console.log(3 > 2 > 1);	 //(true > 1) // false
+	JavaScript translates to true > 1. true has value 1, so it then compares 1 > 1, which is false.
+
+========================================================================================
+
+22. What will be the output of the following code:
+=> 	for (let i = 0; i < 5; i++) {
+		setTimeout(function() { console.log(i); }, i * 1000 );   //0,1,2,3,4 b/c using let 
+	}
+	
+	// The reason for this is that each function executed within the loop will be executed after the entire loop has completed and all will therefore reference the last value stored in i, which was 5.
+	for (var i = 0; i < 5; i++) {
+		setTimeout(function() { console.log(i); }, i * 1000 );  //5,5,5,5,5  b/c using var  
+	}
+
+========================================================================================
+
+23.	What will be the output of this code?
+=>	var x = 21;
+	var girl = function () {
+		console.log(x);
+		var x = 20;
+	};
+	girl (); //undefined
+
+========================================================================================
+
+24.	Consider the following code. What will the output be, and why?
+	(function () {
+		try {
+			throw new Error();
+		} catch (x) {
+			var x = 1, y = 2;
+			console.log(x);
+		}
+		console.log(x);
+		console.log(y);
+	})();
+
+========================================================================================
+
+25.	What will the code below output to the console and why?
+
+
+========================================================================================
+
+
+========================================================================================
+
+
+========================================================================================
+
+
+========================================================================================
+
+
+========================================================================================
+
+
+========================================================================================
+
+
+========================================================================================
+
+	window is a global object whhich is created along with the global execution context created by javascript engine and into the global space we can all access variable and function in our code.
+	javascript engine also creates this keyword and in the global level this "this" point to the global object.
+	this === window
+	
+========================================================================================
+
+	var a=10;
+	function abc(){
+		var a= 100;
+		console.log(this.a);
+	}
+	console.log(a);
+	abc();
+	
+========================================================================================
+
